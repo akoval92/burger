@@ -1,22 +1,29 @@
-var express = require('express');
+var express = require('express');  // pulling npm express package
 
-var app = express();
+var app = express();                // utilizing expess package
 
-app.use(express.static("public"));
+var PORT = process.env.PORT || 8080;
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+var exphbs = require("express-handlebars");          // requires the npm express handlebar package
+app.use(express.static("public"));                  // express.static allows all the files in the public folder
+                                                    // to be utilized
 
-var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+app.use(express.urlencoded({ extended: true }));      // allows the return to be interpreted
+app.use(express.json());                              // as a json object
 
-var routes = require("./controllers/burgers_controllers");
 
-app.use(routes);
+app.engine("handlebars", exphbs({ defaultLayout: "main" })); // ? app.engine defines which files to find? \/
+                                                            
+app.set("view engine", "handlebars");                       // utilizes the express package               /\
 
-app.listen(PORT, function() {
+var routes = require("./controllers/burgers_controllers");    //require route to burgers_controlllers.js
+
+app.use(routes);                                             //  use these routes utilizing the express package
+
+
+
+app.listen(PORT, function() {                                   // "activates" port
   console.log("Server listening on: http://localhost:" + PORT);
 });
 

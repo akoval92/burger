@@ -2,7 +2,7 @@
   "name": "burger",
   "version": "1.0.0",
   "description": "Add a burger to your list and devour one by one.",
-  "main": "index.js",
+  "main": "main.js",
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
